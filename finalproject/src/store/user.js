@@ -1,19 +1,35 @@
-// /store/task.js
+// /store/user.js
 
 import { defineStore } from 'pinia';
-import supabase from '../supabase/index.js';
+import supabase from '../supabase';
 
-export default defineStore('tasks', {
+export default defineStore('user', {
   state: () => ({
-    tasks: null,
+    user: null,
   }),
+
   actions: {
-    async fetchTasks() {
-      const { data: tasks } = await supabase
-        .from('tasks')
-        .select('*')
-        .order('id', { ascending: false });
-      this.tasks = tasks;
+    async fetchUser() {
+      const user = await supabase.auth.user();
+      this.user = user;
     },
+    async signUp(email, password) {
+      const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) throw error;
+      if (user) this.user = user;
+    },
+
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: 'user',
+        storage: localStorage,
+      },
+    ],
   },
 });
