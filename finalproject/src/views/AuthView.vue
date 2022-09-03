@@ -1,6 +1,7 @@
 <template>
     <h1>Sign up / Sign in</h1>
     <button @click="handleSignUp">Sign Up </button>
+    <button @click="handleSignIn">Sign In </button>
 </template>
 
 <script>
@@ -21,6 +22,13 @@ export default {
         password: '123456',
       };
       this.signUp(userData.email, userData.password);
+    },
+    handleSignIn() {
+      const userData = {
+        email: 'assd.asd@asc.com',
+        password: '123456',
+      };
+      this.signIn(userData.email, userData.password);
     },
   },
   watch: {
