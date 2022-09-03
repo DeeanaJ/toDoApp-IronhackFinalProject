@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^1.35.6",
+    "pinia": "^2.0.21"
+  }
+}
