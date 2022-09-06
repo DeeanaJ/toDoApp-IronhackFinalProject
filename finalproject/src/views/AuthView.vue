@@ -1,11 +1,22 @@
 <template>
-    <h1>Sign up / Sign in</h1>
-    <button @click="handleSignUp">Sign Up </button>
-    <button @click="handleSignIn">Sign In </button>
+  <h1>Sign up / Sign in</h1>
+  <form>
+    <div id="auth">
+      <label for="email"
+        >Email:
+        <input type="email" required id="email" v-model="email" />
+      </label>
+      <label for="password"
+        >Password:
+        <input type="password" required id="password" v-model="password" />
+      </label>
+    </div>
+  </form>
+  <button @click="handleSignUp">Sign Up</button>
+  <button @click="handleSignIn">Sign In</button>
 </template>
 
 <script>
-
 import { mapActions, mapState } from 'pinia';
 import userStore from '@/store/user';
 
