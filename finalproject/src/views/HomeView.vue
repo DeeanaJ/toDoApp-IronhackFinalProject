@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <button> + New task</button>
+    <button @click="newTask"> + New task</button>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     ...mapState(taskStore, ['task']),
   },
   methods: {
-    ...mapActions(taskStore, ['fetchTasks']),
+    ...mapActions(taskStore, ['fetchTasks', 'newTask']),
   },
   created() {
     this.fetchTasks();

@@ -1,7 +1,7 @@
 <template>
   <nav v-if="user !== null">
     <router-link to="/">Home</router-link>
-    <router-link to="/auth">Sign out</router-link>
+    <router-link to="/auth"><button @click="signOut">Sign out</button></router-link>
   </nav>
   <router-view/>
   <div class="app">
