@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <button @click="newTask"> + New task</button>
   </div>
 </template>
 
