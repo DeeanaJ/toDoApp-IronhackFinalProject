@@ -1,7 +1,7 @@
 <template>
   <nav v-if="user !== null">
     <router-link to="/">Home</router-link>
-    <router-link to="/auth"><button @click="signOut">Sign out</button></router-link>
+    <router-link @click.prevent="handleSignOut" to="/signup">Sign out</router-link>
   </nav>
   <router-view/>
   <div class="app">
@@ -20,13 +20,19 @@ export default {
   },
   methods: {
     ...mapActions(userStore, ['fetchUser']),
+    handleSignOut() {
+      this.signOut();
+      if (this.user === null) {
+        this.$route.push('/signup');
+      }
+    },
   },
   async created() {
     try {
       await this.fetchUser(); // here we call fetch user
       if (!this.user) {
       // redirect them to logout if the user is not there
-        this.$router.push({ path: '/auth' });
+        this.$router.push({ path: '/signup' });
       } else {
       // continue to dashboard
         this.$router.push({ path: '/' });
@@ -41,7 +47,6 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

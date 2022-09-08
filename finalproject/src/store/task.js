@@ -13,7 +13,10 @@ export default defineStore('tasks', {
         .from('tasks')
         .select('*')
         .order('id', { ascending: false });
-      this.tasks = tasks;
+      this.tasks = tasks.map((task) => ({
+        ...task,
+        inserted_at: new Date(task.inserted_at).toLocaleDateString(),
+      }));
     },
     async newTask(task) {
       const { data, error } = await supabase.from('tasks').insert(task);
@@ -21,6 +24,11 @@ export default defineStore('tasks', {
       if (data) {
         this.tasks.push(data);
       }
+    },
+    getters: {
+      tasksByDate() {
+        return this.tasks.sort((a, b) => (a.inserted_at > b.inserted_at ? -1 : 1));
+      },
     },
   },
 });
