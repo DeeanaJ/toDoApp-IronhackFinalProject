@@ -1,22 +1,38 @@
 <template>
-  <div>
-    <h1>Sign up</h1>
-    <form>
-      <div id="signupview">
+  <h1>Sign up</h1>
+  <form>
+    <div id="signupview">
+      <div v-if="errorMsg">
+        <p>{{ errorMsg }}</p>
+      </div>
+      <div>
         <label for="email"
           >Email:
           <input type="email" required id="email" v-model="email" />
         </label>
+      </div>
+      <div>
         <label for="password"
           >Password:
           <input type="password" required id="password" v-model="password" />
         </label>
-        <button @click="handleSignUp">Sign Up</button>
       </div>
-    </form>
-    <p>Already have an account?</p>
-    <router-link to="/signin">Sign in </router-link>
-  </div>
+      <div>
+        <label for="confirmPass"
+          >Confirm password:
+          <input
+            type="password"
+            required
+            id="confirmPass"
+            v-model="confirmPass"
+          />
+        </label>
+      </div>
+      <button @click="handleSignUp">Sign up</button>
+    </div>
+  </form>
+  <p>Already have an account?</p>
+  <router-link to="/signin">Sign in </router-link>
 </template>
 
 <script>
@@ -24,24 +40,30 @@ import { mapActions, mapState } from 'pinia';
 import userStore from '@/store/user';
 
 export default {
+  name: 'RegisterView',
   data() {
     return {
-      email: '',
-      password: '',
+      errorMsg: '',
     };
   },
-  name: 'SignUpView',
   computed: {
     ...mapState(userStore, ['user']),
   },
   methods: {
     ...mapActions(userStore, ['signUp']),
-    handleSignUp() {
-      const userData = {
-        email: this.email,
-        password: this.password,
-      };
-      this.signUp(userData.email, userData.password);
+    async handleSignUp() {
+      if (this.password === this.confirmPass) {
+        try {
+          const userData = {
+            email: this.email,
+            password: this.password,
+            confirmPass: this.confirmPass,
+          };
+          this.signUp(userData.email, userData.password);
+        } catch (error) {
+          this.errorMsg = error.message;
+        }
+      }
     },
   },
   watch: {

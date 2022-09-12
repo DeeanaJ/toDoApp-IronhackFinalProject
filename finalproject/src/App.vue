@@ -1,17 +1,15 @@
 <template>
   <nav v-if="user !== null">
-    <router-link to="/">Home</router-link>
-    <router-link @click.prevent="handleSignOut" to="/signup">Sign out</router-link>
+    <router-link to="/">Home</router-link> |
+    <router-link @click.prevent = "handleSignOut" to="/signin">Sign out</router-link>
   </nav>
   <router-view/>
-  <div class="app">
-  </div>
 </template>
 
 <script>
 
 import userStore from '@/store/user';
-import { mapState, mapActions } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 
 export default {
   name: 'App',
@@ -19,11 +17,11 @@ export default {
     ...mapState(userStore, ['user']),
   },
   methods: {
-    ...mapActions(userStore, ['fetchUser']),
+    ...mapActions(userStore, ['fetchUser', 'signOut']),
     handleSignOut() {
       this.signOut();
       if (this.user === null) {
-        this.$route.push('/signup');
+        this.$router.push('/signin');
       }
     },
   },
@@ -32,7 +30,7 @@ export default {
       await this.fetchUser(); // here we call fetch user
       if (!this.user) {
       // redirect them to logout if the user is not there
-        this.$router.push({ path: '/signup' });
+        this.$router.push({ path: '/signin' });
       } else {
       // continue to dashboard
         this.$router.push({ path: '/' });
@@ -47,6 +45,7 @@ export default {
 
 <style>
 #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
