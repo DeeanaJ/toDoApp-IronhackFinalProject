@@ -1,30 +1,41 @@
 <template>
-  <div>
-    <h1>Sign in</h1>
-    <form>
-      <div id="signinview">
-        <label for="email"
-          >Email:
-          <input type="email" required id="email" v-model="email" />
-        </label>
-        <label for="password"
-          >Password:
-          <input type="password" required id="password" v-model="password" />
-        </label>
-        <button @click="handleSignIn">Sign In</button>
-      </div>
-    </form>
-    <p>Don't have an account?</p>
-    <router-link to="/signup">Sign up </router-link>
-  </div>
+  <h1>Sign in</h1>
+  <form>
+    <div id='signinview'>
+    <div>
+      <label for="email"
+        >Email:
+        <input
+          type="email"
+          required
+          id="email"
+          v-model="email"
+        />
+      </label>
+    </div>
+    <div>
+      <label for="password"
+        >Password:
+        <input
+          type="password"
+          required
+          id="password"
+          v-model="password"
+        />
+      </label>
+    </div>
+    <button @click="handleSignIn">Sign in</button>
+    </div>
+  </form>
+   <p>Don't have an account?</p>
+    <router-link to="/register">Sign up </router-link>
 </template>
-
 <script>
 import { mapActions, mapState } from 'pinia';
 import userStore from '@/store/user';
 
 export default {
-  name: 'SignInView',
+  name: 'AuthView',
   computed: {
     ...mapState(userStore, ['user']),
   },
@@ -32,8 +43,9 @@ export default {
     ...mapActions(userStore, ['signIn']),
     handleSignIn() {
       const userData = {
-        email: '',
-        password: '',
+        email: this.email,
+        password: this.password,
+        confirmPass: this.confirmPass,
       };
       this.signIn(userData.email, userData.password);
     },
