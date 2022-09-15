@@ -62,19 +62,8 @@ export default {
     ...mapState(userStore, ['user']),
   },
   methods: {
-    ...mapActions(taskStore, ['fetchTasks', 'NewTask']),
+    ...mapActions(taskStore, ['fetchTasks', 'newTask']),
 
-    handleEdit(taskId) {
-      console.log('Edit');
-      console.log(taskId);
-      this.showModal({
-        title: 'Edit Task',
-        action: 'edit-task',
-        details: {
-          taskId,
-        },
-      });
-    },
     async handleDelete(taskId) {
       const result = await this.removeTask(taskId);
       if (result) {
@@ -84,7 +73,7 @@ export default {
       }
     },
     handleAddNewTask() {
-      this.NewTask({
+      this.newTask({
         title: 'New task',
         user_id: this.user.id,
       });
