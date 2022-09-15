@@ -18,17 +18,17 @@
         </label>
       </div>
       <div>
-        <label for="confirmPass"
+        <label for="repeatPass"
           >Confirm password:
           <input
             type="password"
             required
-            id="confirmPass"
-            v-model="confirmPass"
+            id="repeatPass"
+            v-model="repeatPass"
           />
         </label>
       </div>
-      <button @click="handleSignUp">Sign up</button>
+      <button @click.prevent="handleSignUp">Sign up</button>
     </div>
   </form>
   <p>Already have an account?</p>
@@ -44,6 +44,9 @@ export default {
   data() {
     return {
       errorMsg: '',
+      email: '',
+      password: '',
+      repeatPass: '',
     };
   },
   computed: {
@@ -52,12 +55,12 @@ export default {
   methods: {
     ...mapActions(userStore, ['signUp']),
     async handleSignUp() {
-      if (this.password === this.confirmPass) {
+      if (this.password === this.repeatPass) {
         try {
           const userData = {
             email: this.email,
             password: this.password,
-            confirmPass: this.confirmPass,
+            repeatPass: this.repeatPass,
           };
           this.signUp(userData.email, userData.password);
         } catch (error) {

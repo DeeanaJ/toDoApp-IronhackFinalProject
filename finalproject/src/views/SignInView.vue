@@ -24,7 +24,7 @@
         />
       </label>
     </div>
-    <button @click="handleSignIn">Sign in</button>
+    <button @click.prevent="handleSignIn">Sign in</button>
     </div>
   </form>
    <p>Don't have an account?</p>
@@ -35,7 +35,13 @@ import { mapActions, mapState } from 'pinia';
 import userStore from '@/store/user';
 
 export default {
-  name: 'AuthView',
+  name: 'SignInView',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
   computed: {
     ...mapState(userStore, ['user']),
   },
@@ -45,7 +51,6 @@ export default {
       const userData = {
         email: this.email,
         password: this.password,
-        confirmPass: this.confirmPass,
       };
       this.signIn(userData.email, userData.password);
     },
