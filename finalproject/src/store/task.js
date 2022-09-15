@@ -21,8 +21,8 @@ export default defineStore('tasks', {
     async newTask(task) {
       const { data, error } = await supabase.from('tasks').insert(task);
       if (error) throw error;
-      if (data) {
-        this.tasks.push(data);
+      if (data.length) {
+        this.tasks.push(data[0]);
       }
     },
     getters: {
