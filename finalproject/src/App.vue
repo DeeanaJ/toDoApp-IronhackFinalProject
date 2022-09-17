@@ -1,7 +1,8 @@
 <template>
   <nav v-if="user !== null">
-    <router-link to="/">Home</router-link> |
-    <router-link @click.prevent = "handleSignOut" to="/signin">Sign out</router-link>
+    <span>Signed in as {{ user.email }}</span>
+    <span id='sep'>•</span>
+    <router-link @click.prevent = "handleSignOut" to="/signin" id='signout'>Sign out</router-link>
   </nav>
   <router-view/>
 </template>

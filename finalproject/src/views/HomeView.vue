@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>To do:</h1>
 
     <TaskList/>
     <AddATask/>
@@ -8,11 +8,12 @@
 </template>
 
 <script>
-import TaskList from '../components/TaskList.vue';
-import AddATask from '../components/AddATask.vue';
+import TaskList from '@/components/TaskList.vue';
+import AddATask from '@/components/AddATask.vue';
 
 export default {
   name: 'HomeView',
   components: { TaskList, AddATask },
+
 };
 </script>
