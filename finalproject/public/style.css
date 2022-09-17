@@ -11,8 +11,14 @@ button {
     color: #fff;
     border-radius: 4px;
     margin-top: 20px;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 1em;
+}
+button:hover {
+    background-color: #35a673;
+}
+button:active {
+    background-color: #299564;
 }
 
 #signupview, #signinview {
@@ -29,6 +35,35 @@ form {
 
 input {
     height: 32px;
-    border: 1px solid #aaa;
+    border:none;
+    border-bottom: 2px solid #aaa;
     margin: 15px;
+}
+
+input:focus {
+    background-color: none;
+}
+
+#signout {
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+#signout:hover {
+    text-decoration: underline;
+    color: #42b983;
+}
+#sep {
+    margin: 0 10px;
+    color: #aaa;
+}
+#addatask {
+    display: flex;
+
+}
+
+
+td {
+    text-align: left;
+    padding: 2px 40px;
 }

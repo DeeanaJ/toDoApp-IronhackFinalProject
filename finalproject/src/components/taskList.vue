@@ -1,10 +1,10 @@
 <template>
-  <table v-if="tasksByDate.length">
+  <table>
     <tr>
       <th v-for="column in tableCols" :key="column.key">{{ column.title }}</th>
     </tr>
 
-    <tr v-for="task in tasksByDate" :key="task.id">
+    <tr v-for="task in tasks" :key="task.id">
       <td>{{ task.title }}</td>
       <td>{{ task.inserted_at }}</td>
     </tr>
@@ -21,7 +21,7 @@ export default {
   name: 'TaskList',
   data() {
     return {
-      tableColumns: [
+      tableCols: [
         {
           title: 'Title',
           key: 'title',
@@ -44,21 +44,19 @@ export default {
           id: 0,
           title: 'Edit',
           icon: '🖌️',
-          class: 'primary',
           handleFunction: this.handleEdit,
         },
         {
           id: 1,
           title: 'Delete',
           icon: '💣',
-          class: 'danger',
           handleFunction: this.handleDelete,
         },
       ],
     };
   },
   computed: {
-    ...mapState(taskStore, ['tasksByDate']),
+    ...mapState(taskStore, ['tasks', 'tasksByDate']),
     ...mapState(userStore, ['user']),
   },
   methods: {
