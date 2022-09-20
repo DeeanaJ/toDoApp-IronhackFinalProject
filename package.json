@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@supabase/supabase-js": "^1.35.6",
+    "nes.css": "^2.3.0",
     "pinia": "^2.0.21"
   }
 }
