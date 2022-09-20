@@ -7,6 +7,15 @@
     <tr v-for="task in tasks" :key="task.id">
       <td>{{ task.title }}</td>
       <td>{{ task.inserted_at }}</td>
+      <td>{{ task.is_complete ? task.is_complete : 'In progress' }} </td>
+        <td>
+        <div class="task-operations">
+          <button v-for="action in actions" :key="action.id"
+            @click="action.taskOperation(task.id)">
+            {{ action.icon }}
+          </button>
+        </div>
+      </td>
     </tr>
   </table>
 </template>
@@ -42,15 +51,15 @@ export default {
       actions: [
         {
           id: 0,
-          title: 'Edit',
-          icon: '🖌️',
-          handleFunction: this.handleEdit,
+          title: 'Complete',
+          icon: '✔️',
+          taskOperation: this.handleComplete,
         },
         {
           id: 1,
           title: 'Delete',
-          icon: '💣',
-          handleFunction: this.handleDelete,
+          icon: '❌',
+          taskOperation: this.handleDelete,
         },
       ],
     };
@@ -60,14 +69,13 @@ export default {
     ...mapState(userStore, ['user']),
   },
   methods: {
-    ...mapActions(taskStore, ['fetchTasks', 'newTask']),
+    ...mapActions(taskStore, ['fetchTasks', 'newTask', 'deleteTask']),
 
-    async handleDelete(taskId) {
-      const result = await this.removeTask(taskId);
-      if (result) {
-        console.log('Task removed');
-      } else {
-        console.log('Task not removed');
+    handleDelete(taskId) {
+      try {
+        this.deleteTask(taskId);
+      } catch (error) {
+        console.log(error.message);
       }
     },
     handleAddNewTask() {
