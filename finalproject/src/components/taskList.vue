@@ -1,5 +1,6 @@
 <template>
-  <table>
+<div class="nes-table-responsive">
+  <table id="tasklist" class="nes-table is-bordered is-centered">
     <tr>
       <th v-for="column in tableCols" :key="column.key">{{ column.title }}</th>
     </tr>
@@ -18,6 +19,7 @@
       </td>
     </tr>
   </table>
+  </div>
 </template>
 
 <script>
@@ -75,7 +77,7 @@ export default {
       try {
         this.deleteTask(taskId);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
       }
     },
     handleAddNewTask() {
