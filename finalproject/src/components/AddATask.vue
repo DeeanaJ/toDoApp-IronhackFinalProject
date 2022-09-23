@@ -1,10 +1,19 @@
 <template>
-  <div class="addatask">
+  <div class="nes-field is-inline addatask">
     <label for="taskinput">
-    <input type='text' id="taskinput" name="taskinput" v-model='title' placeholder="Task name"/>
+      <input
+        type="text"
+        id="taskinput"
+        name="taskinput"
+        class="nes-input"
+        placeholder="Task name"
+        v-model="title"
+      />
     </label>
-    <button class="primary" @click="addNewTask">+ Create task</button>
-    <button class="primary" @click="fetchTasks">Refresh</button>
+    <button type="button" class="nes-btn is-primary" @click="addNewTask">
+      + Create task
+    </button>
+    <button type="button" class="nes-btn" @click="fetchTasks">Refresh</button>
   </div>
 </template>
 

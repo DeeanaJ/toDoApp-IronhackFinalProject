@@ -1,48 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "./node_modules/nes.css/css/nes.css";
     
 * {
-    font-family: Lato;
+    font-family: 'Press Start 2P', monospace;
 }
 
-button {
-    background-color: #42b983;
-    border: none;
-    padding: 12px;
-    color: #fff;
-    border-radius: 4px;
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 1em;
-}
-button:hover {
-    background-color: #35a673;
-}
-button:active {
-    background-color: #299564;
+#signinview label, #signupview label {
+    text-align: left;
 }
 
 #signupview, #signinview {
-    border: 1px solid #eee;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
+    margin-top: 100px;
+    margin-bottom: 40px;
 }
+
+#signinview input, #signupview input {
+    margin-bottom: 20px;
+}
+
 form {
     width: 40vw;
     margin: auto;
-}
-
-input {
-    height: 32px;
-    border:none;
-    border-bottom: 2px solid #aaa;
-    margin: 15px;
-}
-
-input:focus {
-    background-color: none;
 }
 
 #signout {
@@ -58,13 +36,14 @@ input:focus {
     margin: 0 10px;
     color: #aaa;
 }
-#addatask {
-    display: flex;
 
+#tasklist {
+    margin: 20px auto;
 }
 
-
-td {
-    text-align: left;
-    padding: 2px 40px;
+nav {
+    margin-bottom: 40px;
+}
+.home {
+    margin: 100px;
 }

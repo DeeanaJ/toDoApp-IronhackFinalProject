@@ -1,34 +1,53 @@
 <template>
-  <h1>Sign up</h1>
   <form>
-    <div id="signupview">
+    <div id="signupview" class="nes-container with-title is-centered">
+       <p class='title'>Sign up</p>
       <div v-if="errorMsg">
         <p>{{ errorMsg }}</p>
       </div>
-      <div>
+      <div class="nes-field is-inline">
         <label for="email"
           >Email:
-          <input type="email" required id="email" v-model="email" />
+          <input
+            type="email"
+            id="email"
+            class="nes-input"
+            required
+            v-model="email"
+          />
         </label>
       </div>
-      <div>
+      <div class="nes-field is-inline">
         <label for="password"
           >Password:
-          <input type="password" required id="password" v-model="password" />
-        </label>
-      </div>
-      <div>
-        <label for="repeatPass"
-          >Confirm password:
           <input
             type="password"
+            id="password"
+            class="nes-input"
             required
+            v-model="password"
+          />
+        </label>
+      </div>
+     <div class="nes-field is-inline">
+        <label for="repeatPass"
+          >Repeat password:
+          <input
+            type="password"
             id="repeatPass"
+            class="nes-input"
+            required
             v-model="repeatPass"
           />
         </label>
       </div>
-      <button @click.prevent="handleSignUp">Sign up</button>
+      <button
+        type="button"
+        class="nes-btn is-success"
+        @click.prevent="handleSignUp"
+      >
+        Sign up
+      </button>
     </div>
   </form>
   <p>Already have an account?</p>
