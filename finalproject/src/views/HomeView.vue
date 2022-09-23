@@ -1,25 +1,19 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <button> + New task</button>
+    <h1>To do:</h1>
+
+    <TaskList/>
+    <AddATask/>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'pinia';
-import taskStore from '@/store/task';
+import TaskList from '@/components/TaskList.vue';
+import AddATask from '@/components/AddATask.vue';
 
 export default {
   name: 'HomeView',
-  computed: {
-    ...mapState(taskStore, ['task']),
-  },
-  methods: {
-    ...mapActions(taskStore, ['fetchTasks']),
-  },
-  created() {
-    this.fetchTasks();
-    // new task
-  },
+  components: { TaskList, AddATask },
+
 };
 </script>

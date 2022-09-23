@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "./node_modules/nes.css/css/nes.css";
+    
+* {
+    font-family: 'Press Start 2P', monospace;
+}
+
+#signinview label, #signupview label {
+    text-align: left;
+}
+
+#signupview, #signinview {
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+#signinview input, #signupview input {
+    margin-bottom: 20px;
+}
+
+form {
+    width: 40vw;
+    margin: auto;
+}
+
+#signout {
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+#signout:hover {
+    text-decoration: underline;
+    color: #42b983;
+}
+#sep {
+    margin: 0 10px;
+    color: #aaa;
+}
+
+#tasklist {
+    margin: 20px auto;
+}
+
+nav {
+    margin-bottom: 40px;
+}
+.home {
+    margin: 100px;
+}

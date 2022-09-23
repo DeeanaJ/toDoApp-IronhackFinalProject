@@ -13,7 +13,33 @@ export default defineStore('tasks', {
         .from('tasks')
         .select('*')
         .order('id', { ascending: false });
-      this.tasks = tasks;
+      this.tasks = tasks.map((task) => ({
+        ...task,
+        inserted_at: new Date(task.inserted_at).toLocaleDateString(),
+      }));
+      return this.tasks.sort((a, b) => (a.inserted_at > b.inserted_at ? -1 : 1));
+    },
+
+    async newTask(taskTitle, userName) {
+      const { error } = await supabase.from('tasks').insert([{ title: taskTitle, user_id: userName }]);
+      if (error) throw error;
+    },
+
+    async deleteTask(taskId) {
+      try {
+        const { data, error } = await supabase.from('tasks').delete().match({ id: taskId });
+        if (error) throw error;
+        if (data && data.length) {
+          const toBeDeleted = this.tasks.findIndex((task) => task.id === taskId);
+          this.tasks = this.tasks.splice(toBeDeleted, 1);
+        } else {
+          throw new Error('Task not found');
+        }
+        return data;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
     },
   },
 });
