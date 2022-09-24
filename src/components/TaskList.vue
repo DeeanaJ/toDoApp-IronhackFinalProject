@@ -8,9 +8,13 @@
       </tr>
 
       <tr v-for="task in tasks" :key="task.id">
-        <td>{{ task.title }}</td>
+        <td :class="task.is_complete ? 'complete' : 'is-primary' ">
+          <span v-if="task.is_complete">**</span>
+          {{ task.title }}
+          <span v-if="task.is_complete">**</span>
+          </td>
         <td>{{ task.inserted_at }}</td>
-        <td>{{ task.is_complete ? task.is_complete : "In progress" }}</td>
+        <td>{{ task.is_complete ? "Done!" : "In progress" }}</td>
         <td>
           <button type="button" @click="handleComplete(task.is_complete, task.id)">✔️</button>
           <button type="button" @click="handleDelete(task.id)">❌</button>
