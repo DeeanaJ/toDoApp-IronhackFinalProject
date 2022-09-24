@@ -41,5 +41,10 @@ export default defineStore('tasks', {
         return null;
       }
     },
+
+    async completeTask(taskId, status) {
+      const { error } = await supabase.from('tasks').update({ is_complete: status }).match({ id: taskId });
+      if (error) throw error;
+    },
   },
 });
