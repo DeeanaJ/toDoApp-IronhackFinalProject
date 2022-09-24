@@ -25,12 +25,10 @@ form {
 
 #signout {
     font-size: 0.9em;
-    text-decoration: none;
 }
 
 #signout:hover {
     text-decoration: underline;
-    color: #42b983;
 }
 #sep {
     margin: 0 10px;
@@ -46,4 +44,9 @@ nav {
 }
 .home {
     margin: 100px;
+}
+
+.complete {
+    background-color: darkslategray;
+    color: lightgreen;
 }
