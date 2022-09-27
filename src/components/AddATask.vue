@@ -40,6 +40,9 @@ export default {
         user_id: this.user.id,
       };
       this.newTask(info.title, info.user_id);
+      if (info.title.length < 4) {
+        alert('Task text too short');
+      }
     },
   },
   created() {
