@@ -8,16 +8,28 @@
       </tr>
 
       <tr v-for="task in tasks" :key="task.id">
-        <td :class="task.is_complete ? 'complete' : 'is-primary' ">
+        <td :class="task.is_complete ? 'complete' : 'is-primary'">
           <span v-if="task.is_complete">**</span>
           {{ task.title }}
           <span v-if="task.is_complete">**</span>
-          </td>
+        </td>
         <td>{{ task.inserted_at }}</td>
         <td>{{ task.is_complete ? "Done!" : "In progress" }}</td>
         <td>
-          <button type="button" @click="handleComplete(task.is_complete, task.id)">✔️</button>
-          <button type="button" @click="handleDelete(task.id)">❌</button>
+          <button
+            class="nes-btn is-success"
+            type="button"
+            @click="handleComplete(task.is_complete, task.id)"
+          >
+            ✔️
+          </button>
+          <button
+            class="nes-btn is-error"
+            type="button"
+            @click="handleDelete(task.id)"
+          >
+            ❌
+          </button>
         </td>
       </tr>
     </table>
