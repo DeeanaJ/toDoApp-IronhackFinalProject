@@ -43,10 +43,24 @@ nav {
     margin-bottom: 40px;
 }
 .home {
-    margin: 100px;
+    margin: 80px;
 }
 
 .complete {
     background-color: darkslategray;
     color: lightgreen;
+}
+@media (max-width: 640px) {
+    form {
+        width: 95%;
+    }
+    nav {
+        font-size: 0.7em;
+    }
+    .home {
+        margin: 5px;
+    }
+    table {
+        scale: 0.9;
+    }
 }
