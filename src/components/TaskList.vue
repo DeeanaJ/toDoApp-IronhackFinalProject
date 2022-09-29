@@ -16,6 +16,13 @@
         <td>{{ task.inserted_at }}</td>
         <td>{{ task.is_complete ? "Done!" : "In progress" }}</td>
         <td>
+                    <button
+            class="nes-btn is-disabled"
+            type="button"
+            @click="handleEditTask(task.id)"
+          >
+            ✏️
+          </button>
           <button
             class="nes-btn is-success"
             type="button"
@@ -75,6 +82,7 @@ export default {
       'newTask',
       'deleteTask',
       'completeTask',
+      'editTask',
     ]),
 
     handleDelete(taskId) {
@@ -98,6 +106,9 @@ export default {
       } catch (error) {
         console.error('Error: ', error.message);
       }
+    },
+    handleEditTask(taskTitle, taskId) {
+      this.editTask(taskTitle, taskId);
     },
   },
   created() {

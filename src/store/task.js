@@ -21,7 +21,9 @@ export default defineStore('tasks', {
     },
 
     async newTask(taskTitle, userName) {
-      const { error } = await supabase.from('tasks').insert([{ title: taskTitle, user_id: userName }]);
+      const { error } = await supabase
+        .from('tasks')
+        .insert([{ title: taskTitle, user_id: userName }]);
       if (error) throw error;
     },
 
@@ -43,7 +45,17 @@ export default defineStore('tasks', {
     },
 
     async completeTask(taskId, status) {
-      const { error } = await supabase.from('tasks').update({ is_complete: status }).match({ id: taskId });
+      const { error } = await supabase
+        .from('tasks')
+        .update({ is_complete: status })
+        .match({ id: taskId });
+      if (error) throw error;
+    },
+    async editTask(taskTitle, taskId) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ title: taskTitle })
+        .match({ id: taskId });
       if (error) throw error;
     },
   },
